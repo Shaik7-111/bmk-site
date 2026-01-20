@@ -1,0 +1,512 @@
+/* ================= TOOLBAR ================= */
+.products-toolbar {
+  display: grid;
+  grid-template-columns: 220px 1fr auto;
+  gap: 20px;
+  align-items: center;
+  margin: 40px auto 20px;
+}
+
+/* ================= CATEGORIES HEADER ================= */
+.categories-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+#catArrow {
+  transition: transform 0.3s ease;
+}
+
+#catArrow.rotate {
+  transform: rotate(-90deg);
+}
+
+/* ================= SEARCH + SORT ================= */
+.search-sort {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.product-search {
+  position: relative;
+  flex: 1;
+  height: 44px;
+}
+
+.product-search input {
+  width: 100%;
+  height: 44px;
+  padding: 0 40px 0 18px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+}
+
+.product-search button {
+  position: absolute;
+  right: 15px;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.product-sort select {
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+/* ================= VIEW BUTTONS ================= */
+.product-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.view-btn {
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.view-btn.active,
+.view-btn:hover {
+  background: #e53935;
+  color: #fff;
+  border-color: #e53935;
+}
+
+/* ================= MAIN LAYOUT ================= */
+.products-page {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 30px;
+}
+
+/* ================= CATEGORIES PANEL ================= */
+.categories-panel {
+  max-height: 500px;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+
+
+.categories-panel.hide {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+
+
+
+
+.category-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.category-list li {
+  padding: 10px 0;
+}
+
+.category-list li a {
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  display: block;
+  transition: color 0.25s ease, padding-left 0.25s ease;
+}
+
+.category-list li a:hover {
+  color: #2e7d32;
+  padding-left: 8px;
+}
+
+.category-list li.active a {
+  color: #e53935;
+  font-weight: 600;
+}
+
+/* ================================================= */
+/* ================= GRID VIEW ===================== */
+/* ================================================= */
+
+.products.grid-view {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+.products.grid-view .product-card {
+  height: 250px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.products.grid-view .product-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.products.grid-view .product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+
+.products.grid-view .product-card:hover img {
+  transform: scale(1.08);
+}
+
+.products.grid-view .product-hover {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.products.grid-view .product-card:hover .product-hover {
+  opacity: 1;
+}
+
+.products.grid-view h4 {
+  margin-top: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* ================================================= */
+/* ================= LIST VIEW ===================== */
+/* ================================================= */
+
+.products.list-view {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.products.list-view .product-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.products.list-view .product-image {
+  width: 80px;
+  height: 80px;
+  min-width: 80px;
+  min-height: 80px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.products.list-view .product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: none !important;
+}
+
+
+
+.products.list-view h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* ================= LINKS ================= */
+.product-link,
+.product-link:hover,
+.product-link:visited,
+.product-link:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ================= PAGINATION ================= */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 40px 0;
+}
+
+.page {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-weight: 600;
+  color: #333;
+}
+
+.page:hover {
+  background: #2e7d32;
+  color: #fff;
+}
+
+.page.active {
+  background: #2e7d32;
+  color: #fff;
+  pointer-events: none;
+}
+
+/* ================= RESPONSIVE ============*
+
+
+/* ================= GRID VIEW ICON SIZE + COLOR FIX ================= */
+
+/* Make icons bigger */
+.product-hover button i {
+  font-size: 18px;          /* 🔥 increase icon size */
+  color: #333;
+  transition: color 0.25s ease;
+}
+
+/* Button size consistency */
+.product-hover button {
+  width: 46px;
+  height: 46px;
+  background: #fff;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.25s ease;
+}
+
+/* Hover → RED (button + icon) */
+.product-hover button:hover {
+  background: #e53935;
+}
+
+.product-hover button:hover i {
+  color: #fff;
+}
+
+
+/* ================= LIST VIEW FINAL LAYOUT ================= */
+
+.products.list-view {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Product row */
+.products.list-view .product-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 14px 16px;
+  height: auto;
+  text-align: left;
+}
+
+/* Small image on left */
+.products.list-view .product-image {
+  width: 80px;
+  height: 80px;
+  min-width: 80px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* Image fit */
+.products.list-view .product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Disable overlay background */
+.products.list-view .product-hover {
+  position: static;
+  background: none;
+  opacity: 1;
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;     /* 🔥 icons BELOW name */
+}
+
+/* ================= LIST VIEW FINAL CORRECT STRUCTURE ================= */
+
+.products.list-view {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Row */
+.products.list-view .product-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  height: auto;
+}
+
+/* Image left */
+.products.list-view .product-image {
+  width: 80px;
+  height: 80px;
+  min-width: 80px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.products.list-view .product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Right content wrapper */
+.products.list-view .product-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Name on RIGHT of image */
+.products.list-view h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Icons BELOW name */
+.products.list-view .product-hover {
+  position: static;
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+  background: none;
+  opacity: 1;
+}
+
+/* Icon buttons */
+.products.list-view .product-hover button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+/* Icon style */
+.products.list-view .product-hover i {
+  font-size: 15px;
+  color: #333;
+  transition: color 0.25s ease;
+}
+
+/* Hover red */
+.products.list-view .product-hover button:hover {
+  background: #e53935;
+}
+
+.products.list-view .product-hover button:hover i {
+  color: #fff;
+}
+
+
+
+@media (max-width: 768px) {
+
+  /* Hide categories completely */
+  .categories-panel {
+    display: none;
+  }
+
+  /* Toolbar stack */
+  .products-toolbar {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .search-sort {
+    flex-wrap: wrap;
+  }
+
+  .product-actions {
+    justify-content: flex-end;
+  }
+
+  /* GRID VIEW → 2 per row */
+  .products.grid-view {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .products.grid-view .product-image {
+    height: 140px;
+  }
+
+  /* LIST VIEW → ALSO 2 per row (card style) */
+  .products.list-view {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .products.list-view .product-card {
+    display: block;
+    text-align: center;
+  }
+
+  .products.list-view .product-image {
+    width: 100%;
+    height: 140px;
+  }
+
+  .products.list-view h4 {
+    margin-top: 8px;
+    font-size: 14px;
+  }
+
+  /* Icons visible */
+
+
+
+
+
+

@@ -1,0 +1,282 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Products | BMK Traders</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/products.css' %}">
+
+  <!-- Icons -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="container nav">
+    <img src="{% static 'images/BMK.png' %}" class="logo">
+
+    <nav id="menu">
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'about' %}">About Us</a>
+      <a href="{% url 'products' %}" class="active">Products</a>
+      <a href="{% url 'contact' %}">Contact Us</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="{% url 'products' %}" class="cart-btn">🛒</a>
+      <a href="#" class="sign-in-btn">Sign in</a>
+    </div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  </div>
+</header>
+
+<!-- ================= TOOLBAR ================= -->
+<section class="products-toolbar container">
+
+
+
+  <!-- Categories toggle -->
+  <div class="categories-header" onclick="toggleCategories()">
+    <h3>Categories</h3>
+    <i id="catArrow" class="fa-solid fa-chevron-down"></i>
+  </div>
+
+  <!-- Search + Sort -->
+  <div class="search-sort">
+
+  <!-- 🔍 SEARCH FORM -->
+  <form method="get" class="product-search">
+
+    <input
+      type="text"
+      name="q"
+      value="{{ search_query|default_if_none:'' }}"
+
+      placeholder="Search products..."
+    >
+
+    {% if selected_category %}
+      <input type="hidden" name="category" value="{{ selected_category }}">
+    {% endif %}
+
+    <button type="submit">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+
+  </form>
+
+    <div class="product-sort">
+      <select>
+        <option>Newly Added</option>
+        <option>A - Z</option>
+        <option>Price: Low to High</option>
+        <option>Price: High to Low</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- View buttons -->
+  <div class="product-actions">
+
+  <a href="?view=grid
+    {% if selected_category %}&category={{ selected_category }}{% endif %}
+    {% if search_query %}&q={{ search_query }}{% endif %}"
+     class="view-btn {% if view_mode == 'grid' %}active{% endif %}">
+    <i class="fa-solid fa-border-all"></i>
+  </a>
+
+  <a href="?view=list
+    {% if selected_category %}&category={{ selected_category }}{% endif %}
+    {% if search_query %}&q={{ search_query }}{% endif %}"
+     class="view-btn {% if view_mode == 'list' %}active{% endif %}">
+    <i class="fa-solid fa-list"></i>
+  </a>
+
+</div>
+
+
+</section>
+
+<!-- ================= MAIN CONTENT ================= -->
+<section class="products-page container">
+
+  <!-- LEFT: Categories -->
+  <aside class="categories-panel" id="categoriesPanel">
+    <ul class="category-list">
+  <li class="{% if not selected_category %}active{% endif %}">
+    <a href="{% url 'products' %}">All Products</a>
+  </li>
+
+  <li class="{% if selected_category == 'rice' %}active{% endif %}">
+    <a href="?category=rice">Rice</a>
+  </li>
+
+  <li class="{% if selected_category == 'pulses' %}active{% endif %}">
+    <a href="?category=pulses">Pulses</a>
+  </li>
+
+  <li class="{% if selected_category == 'oils' %}active{% endif %}">
+    <a href="?category=oils">Oils</a>
+  </li>
+
+  <li class="{% if selected_category == 'spices' %}active{% endif %}">
+    <a href="?category=spices">Spices</a>
+  </li>
+
+  <li class="{% if selected_category == 'dryfruits' %}active{% endif %}">
+    <a href="?category=dryfruits">Dry Fruits</a>
+  </li>
+
+  <li class="{% if selected_category == 'others' %}active{% endif %}">
+    <a href="?category=others">Other Groceries</a>
+  </li>
+</ul>
+
+  </aside>
+
+  <!-- RIGHT: Products -->
+  <main class="products-panel">
+
+    <section class="products {% if view_mode == 'list' %}list-view{% else %}grid-view{% endif %}">
+
+
+  {% for product in products %}
+  <div class="product-card">
+    <a href="{% url 'productdetail' product.id %}" class="product-link">
+
+      <div class="product-image">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        <div class="product-hover">
+          <button><i class="fa-solid fa-cart-shopping"></i></button>
+          <a href="{% url 'add_to_wishlist' product.id %}">
+              <button>
+                <i class="fa-regular fa-heart"></i>
+              </button>
+          </a>
+        </div>
+      </div>
+
+      <h4>{{ product.name }}</h4>
+
+    </a>
+  </div>
+  {% endfor %}
+
+</section>
+
+
+
+
+    <!-- Pagination -->
+    {% if products.paginator.num_pages > 1 %}
+<div class="pagination">
+  <div class="pagination">
+
+    {% if products.has_previous %}
+      <a href="?page={{ products.previous_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}" class="page">«</a>
+    {% endif %}
+
+    {% for num in products.paginator.page_range %}
+      {% if products.number == num %}
+        <span class="page active">{{ num }}</span>
+      {% else %}
+        <a href="?page={{ num }}
+{% if selected_category %}&category={{ selected_category }}{% endif %}
+{% if search_query %}&q={{ search_query }}{% endif %}
+{% if view_mode %}&view={{ view_mode }}{% endif %}"
+class="page">
+{{ num }}
+</a>
+
+      {% endif %}
+    {% endfor %}
+
+    {% if products.has_next %}
+      <a href="?page={{ products.next_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}" class="page">»</a>
+    {% endif %}
+
+  </div>
+</div>
+{% endif %}
+
+
+  </main>
+
+</section>
+
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- EXPLORE -->
+    <div class="footer-column">
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="{% url 'home' %}"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="{% url 'about' %}"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
+        <li><a href="{% url 'products' %}"><i class="fa-solid fa-box"></i> Products</a></li>
+        <li><a href="{% url 'contact' %}"><i class="fa-solid fa-phone"></i> Contact Us</a></li>
+      </ul>
+    </div>
+
+    <!-- FOLLOW US -->
+    <div class="footer-column">
+      <h3>Follow us</h3>
+      <ul class="social-links">
+        <li><a href="#"><i class="fa-brands fa-facebook-f"></i> Facebook</a></li>
+        <li><a href="#"><i class="fa-brands fa-x-twitter"></i> X</a></li>
+        <li><a href="#"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a></li>
+        <li><a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+      </ul>
+    </div>
+
+    <!-- GET IN TOUCH -->
+    <div class="footer-column">
+      <h3>Get in touch</h3>
+      <ul>
+        <li><i class="fa-solid fa-envelope"></i> info@bmkdoublestars.com</li>
+        <li><i class="fa-solid fa-phone"></i> +91 9063717717</li>
+      </ul>
+    </div>
+
+    <!-- BRAND -->
+    <div class="footer-column brand-column">
+      <h3>BMK Doublestars</h3>
+      <p>
+        BMK Double Stars –<br>
+        A Legacy of Trust Since 1875
+      </p>
+    </div>
+
+  </div>
+</footer>
+
+<!-- FOOTER BOTTOM BAR -->
+<div class="footer-bottom">
+  <div class="footer-bottom-container">
+
+    <div class="footer-left">
+      Copyright © bmkdoublestars
+    </div>
+
+    <div class="footer-right">
+      <a href="#">Terms</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- JS -->
+<script src="{% static 'js/products.js'%}">
+</script>
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,252 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About | BMK Traders</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'css/about.css' %}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+<body>
+
+<header class="header">
+  <div class="container nav">
+
+    <!-- LOGO -->
+    <img src="{% static 'images/bmk.png' %}" class="logo" alt="BMK Traders">
+
+    <!-- NAV LINKS -->
+    <nav id="menu">
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'about' %}" class="active">About Us</a>
+      <a href="{% url 'products' %}">Products</a>
+      <a href="{% url 'contact' %}">Contact Us</a>
+    </nav>
+
+    <!-- RIGHT ACTIONS -->
+    <div class="nav-actions">
+      <a href="{% url 'products' %}" class="cart-btn" title="View Products">🛒</a>
+      <a href="#" class="sign-in-btn">Sign in</a>
+    </div>
+
+    <!-- MOBILE MENU -->
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  </div>
+</header>
+
+
+<section class="page-title">
+  <h1>About Us</h1>
+</section>
+
+<div class="page-wrapper">
+<section class="image-gallery container">
+  <div class="gallery-item">
+    <img src="{% static 'images/about1.jpg' %}" alt="Gallery Image 1">
+  </div>
+  <div class="gallery-item">
+    <img src="{% static 'images/about2.jpg' %}" alt="Gallery Image 2">
+  </div>
+  <div class="gallery-item">
+    <img src="{% static 'images/about3.jpg' %}" alt="Gallery Image 3">
+  </div>
+  <div class="gallery-item">
+    <img src="{% static 'images/about4.jpg' %}" alt="Gallery Image 4">
+  </div>
+  <div class="gallery-item">
+    <img src="{% static 'images/about5.webp' %}" alt="Gallery Image 5">
+  </div>
+  <div class="gallery-item">
+    <img src="{% static 'images/about6.jpg' %}" alt="Gallery Image 6">
+  </div>
+
+</section>
+
+
+<!-- PAGE SECTION 1 -->
+<div class="page-wrapper-content">
+  <div class="page-inner">
+    <section class="content-section">
+      <h2>Our Heritage & Journey Since 1875</h2>
+      <div class="section-divider"></div>
+      <p>
+        The roots of our business trace back to 1875,
+        when the Bepari family began its humble journey in Nandalur.
+        Guided by principles of trust, integrity, and hard work, the family steadily built a reputation for fairness and reliability in trade.
+        Over generations, what began as a small venture grew into a respected wholesale business, supplying communities and merchants across South India.
+        Each generation has carried forward not only the business but also the deep values and traditions instilled by our forefathers. This unbroken lineage of dedication and service stands as the true foundation of our success.
+      </p>
+    </section>
+  </div>
+</div>
+
+<!-- PAGE SECTION 2 -->
+<div class="page-wrapper-content">
+  <div class="page-inner">
+    <section class="content-section">
+      <h2>BMK Double Stars: A Legacy of Quality & Trust</h2>
+      <div class="section-divider"></div>
+      <p>
+        As the business flourished, the Bepari family proudly established BMK Double Stars, a brand that has since become a household name in the wholesale industry.
+        Protected under trademark, BMK Double Stars is more than just a label — it is a reflection of nearly 150 years of heritage, trust, and authenticity.
+        Our brand is recognized across South India as a symbol of quality, commitment, and tradition, serving retailers, distributors, and partners who value long-standing relationships built on mutual respect and honesty.
+        Through every milestone, BMK Double Stars has stood as a shining reminder of the family’s enduring legacy.
+      </p>
+    </section>
+  </div>
+</div>
+
+<div class="page-wrapper-content">
+  <div class="page-inner">
+
+    <section class="content-section left-accent">
+      <p>
+        "Even today, as the Bepari family continues its journey, we remain deeply rooted in the traditions that began in Nandalur.
+        Our mission is not only to grow and expand but also to preserve the values and principles passed down through generations.
+        We believe our greatest achievement is not just in the scale of our business, but in the trust we have nurtured across decades of service.
+        As we look ahead, we carry forward the blessings of our ancestors, the goodwill of our partners, and the promise of staying true to our heritage — ensuring that BMK Double Stars continues to shine bright for generations to come."
+      </p>
+    </section>
+
+  </div>
+</div>
+
+<div class="page-wrapper-content highlight-green">
+  <div class="page-inner">
+
+    <section class="content-section green-section">
+      <h2>Our Specialization: Bulk Orders &amp; Uncompromised Quality</h2>
+
+      <p>
+        Today, we specialize in bulk orders of groceries, including staples such as rice,
+        pulses, spices, oils, and other everyday essentials. True to our heritage, we ensure
+        that quality is never compromised — every product we supply is carefully sourced,
+        handled with care, and delivered with consistency.
+      </p>
+
+      <p>
+        This commitment has made us a trusted partner for retailers, distributors, and
+        businesses who depend on us for reliable supplies at scale.
+      </p>
+
+    </section>
+
+  </div>
+</div>
+
+
+<div class="page-wrapper-content">
+  <div class="page-inner">
+
+    <section class="vision-mission-section">
+
+      <!-- LEFT IMAGE -->
+      <div class="vm-image">
+        <img src="{% static 'images/about7.png' %}" alt="BMK Vision">
+      </div>
+
+      <!-- RIGHT CONTENT -->
+      <div class="vm-content">
+
+        <!-- VISION -->
+        <div class="vm-block">
+          <h2>Our Vision</h2>
+          <p>
+            To carry forward the proud legacy of the Bepari family and the BMK Double
+            Stars brand by becoming one of India’s most trusted names in wholesale
+            groceries. Rooted in tradition and guided by values of honesty, fairness,
+            and uncompromising quality, our vision is to expand our reach from South
+            India to every corner of the country, while preserving the trust and
+            goodwill built over generations since 1875.
+          </p>
+        </div>
+
+        <!-- MISSION -->
+        <div class="vm-block">
+          <h2>Our Mission</h2>
+          <ul>
+            <li>To serve retailers, distributors, and partners with bulk supplies of groceries that meet the highest standards of quality and authenticity.</li>
+            <li>To uphold the values of our forefathers by conducting business with integrity, respect, and long-term commitment.</li>
+            <li>To strengthen the presence of BMK Double Stars across India as a symbol of reliability, heritage, and excellence.</li>
+            <li>To embrace modern business practices while staying rooted in tradition.</li>
+            <li>To ensure that every product reflects the trust, purity, and dedication passed down since 1875.</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+</div>
+</div>
+
+
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- EXPLORE -->
+    <div class="footer-column">
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="{% url 'home' %}"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="{% url 'about' %}"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
+        <li><a href="{% url 'products' %}"><i class="fa-solid fa-box"></i> Products</a></li>
+        <li><a href="{% url 'contact' %}"><i class="fa-solid fa-phone"></i> Contact Us</a></li>
+      </ul>
+    </div>
+
+    <!-- FOLLOW US -->
+    <div class="footer-column">
+      <h3>Follow us</h3>
+      <ul class="social-links">
+        <li><a href="#"><i class="fa-brands fa-facebook-f"></i> Facebook</a></li>
+        <li><a href="#"><i class="fa-brands fa-x-twitter"></i> X</a></li>
+        <li><a href="#"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a></li>
+        <li><a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+      </ul>
+    </div>
+
+    <!-- GET IN TOUCH -->
+    <div class="footer-column">
+      <h3>Get in touch</h3>
+      <ul>
+        <li><i class="fa-solid fa-envelope"></i> info@bmkdoublestars.com</li>
+        <li><i class="fa-solid fa-phone"></i> +91 9063717717</li>
+      </ul>
+    </div>
+
+    <!-- BRAND -->
+    <div class="footer-column brand-column">
+      <h3>BMK Doublestars</h3>
+      <p>
+        BMK Double Stars –<br>
+        A Legacy of Trust Since 1875
+      </p>
+    </div>
+
+  </div>
+</footer>
+
+<!-- FOOTER BOTTOM BAR -->
+<div class="footer-bottom">
+  <div class="footer-bottom-container">
+
+    <div class="footer-left">
+      Copyright © bmkdoublestars
+    </div>
+
+    <div class="footer-right">
+      <a href="#">Terms</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+
+  </div>
+</div>
+
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
