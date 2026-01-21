@@ -64,7 +64,12 @@
 
     <!-- LEFT IMAGE -->
     <div class="product-image">
-      <img src="{{ product.image.url }}" alt="{{ product.name }}">
+     {% if product.image %}
+  <img src="{{ product.image.url }}" alt="{{ product.name }}">
+{% else %}
+  <img src="{% static 'images/no-image.png' %}" alt="No image">
+{% endif %}
+
 
     </div>
 

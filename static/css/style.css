@@ -798,3 +798,30 @@
   cursor: pointer;
 }
 
+/* 🔥 MOBILE – MAKE tag1–tag4 LIKE WHY-CARDS */
+@media (max-width: 480px) {
+
+  .products-grid {
+    grid-template-columns: 1fr;   /* single column */
+    gap: 25px;
+    padding: 0 20px;              /* spacing from edges */
+  }
+
+  .product-card {
+    padding: 30px 20px;           /* SAME as .why-card */
+    border-radius: 10px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  .product-card img {
+    width: 55px;                  /* SAME as why-card */
+    height: 55px;
+    margin-bottom: 15px;
+  }
+
+  .product-card h3 {
+    font-size: 15px;
+    font-weight: 600;
+  }
+}
+

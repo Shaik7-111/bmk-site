@@ -151,7 +151,12 @@
     <a href="{% url 'productdetail' product.id %}" class="product-link">
 
       <div class="product-image">
-        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        {% if product.image %}
+          <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        {% else %}
+          <img src="{% static 'images/no-image.png' %}" alt="No image">
+        {% endif %}
+
         <div class="product-hover">
           <button><i class="fa-solid fa-cart-shopping"></i></button>
           <a href="{% url 'add_to_wishlist' product.id %}">

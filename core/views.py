@@ -23,6 +23,8 @@ def products(request):
 
     if category:
         product_list = product_list.filter(category=category)
+    else:
+        product_list = Product.objects.all().order_by('id')
 
     if search_query:
         product_list = product_list.filter(name__icontains=search_query)

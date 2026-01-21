@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-
+from cloudinary.models import CloudinaryField
 class Product(models.Model):
 
     CATEGORY_CHOICES = [
@@ -13,7 +13,7 @@ class Product(models.Model):
     ]
 
     name = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='products/')
+    image = CloudinaryField('image', blank=True, null=True)
     category = models.CharField(
         max_length=50,
         choices=CATEGORY_CHOICES

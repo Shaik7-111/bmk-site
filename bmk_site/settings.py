@@ -9,9 +9,24 @@ https://docs.djangoproject.com/en/6.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
+from dotenv import load_dotenv
+load_dotenv()
 
 from pathlib import Path
 import os
+
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv("CLOUDINARY_CLOUD_NAME"),
+    'API_KEY': os.getenv("CLOUDINARY_API_KEY"),
+    'API_SECRET': os.getenv("CLOUDINARY_API_SECRET"),
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,12 +46,19 @@ SECRET_KEY = os.getenv(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "bmk-site.onrender.com",
+]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+
+    'cloudinary',
+    'cloudinary_storage',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -147,6 +169,17 @@ STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
 
+
+
+
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = BASE_DIR / 'media'
+
+
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+
+
+
+
