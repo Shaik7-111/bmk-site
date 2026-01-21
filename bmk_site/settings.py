@@ -186,6 +186,7 @@ STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
+WHITENOISE_USE_FINDERS = True
 
 
 
