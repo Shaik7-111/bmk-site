@@ -72,5 +72,29 @@ def wishlist(request):
         'items': items
     })
 
+from django.http import HttpResponse
+from django.contrib.auth.models import User
+
+def create_admin_once(request):
+    user, created = User.objects.get_or_create(
+        username="admin",
+        defaults={
+            "email": "admin@example.com",
+            "is_staff": True,
+            "is_superuser": True,
+        }
+    )
+
+    if created:
+        user.set_password("Admin@123")  # ← NEW STRONG PASSWORD
+        user.save()
+        return HttpResponse("Admin CREATED")
+
+    else:
+        user.is_staff = True
+        user.is_superuser = True
+        user.set_password("Admin@123")  # RESET PASSWORD
+        user.save()
+        return HttpResponse("Admin RESET")
 
 
