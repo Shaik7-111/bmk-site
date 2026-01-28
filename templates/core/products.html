@@ -36,6 +36,7 @@
   </div>
 </header>
 
+
 <!-- ================= TOOLBAR ================= -->
 <section class="products-toolbar container">
 
@@ -84,19 +85,43 @@
   <!-- View buttons -->
   <div class="product-actions">
 
-  <a href="?view=grid
-    {% if selected_category %}&category={{ selected_category }}{% endif %}
-    {% if search_query %}&q={{ search_query }}{% endif %}"
-     class="view-btn {% if view_mode == 'grid' %}active{% endif %}">
+<!--  <a href="?view=grid-->
+<!--    {% if selected_category %}&category={{ selected_category }}{% endif %}-->
+<!--    {% if search_query %}&q={{ search_query }}{% endif %}"-->
+<!--     class="view-btn {% if view_mode == 'grid' %}active{% endif %}">-->
+<!--    <i class="fa-solid fa-border-all"></i>-->
+<!--  </a>-->
+
+<!--  <a href="?view=list-->
+<!--    {% if selected_category %}&category={{ selected_category }}{% endif %}-->
+<!--    {% if search_query %}&q={{ search_query }}{% endif %}"-->
+<!--     class="view-btn {% if view_mode == 'list' %}active{% endif %}">-->
+<!--    <i class="fa-solid fa-list"></i>-->
+<!--  </a>-->
+
+
+    <div class="product-actions">
+
+  <!-- Grid -->
+  <a href="?view=grid" class="view-btn {% if view_mode == 'grid' %}active{% endif %}">
     <i class="fa-solid fa-border-all"></i>
   </a>
 
-  <a href="?view=list
-    {% if selected_category %}&category={{ selected_category }}{% endif %}
-    {% if search_query %}&q={{ search_query }}{% endif %}"
-     class="view-btn {% if view_mode == 'list' %}active{% endif %}">
+  <!-- List -->
+  <a href="?view=list" class="view-btn {% if view_mode == 'list' %}active{% endif %}">
     <i class="fa-solid fa-list"></i>
   </a>
+
+  <!-- Filter -->
+  <button class="view-btn filter-btn" onclick="openFilter()">
+    <i class="fa-solid fa-sliders"></i>
+  </button>
+
+</div>
+
+
+
+
 
 </div>
 
@@ -148,28 +173,63 @@
 
   {% for product in products %}
   <div class="product-card">
+<!--    <a href="{% url 'productdetail' product.id %}" class="product-link">-->
+
+<!--      <div class="product-image">-->
+<!--        {% if product.image %}-->
+<!--          <img src="{{ product.image.url }}" alt="{{ product.name }}">-->
+<!--        {% else %}-->
+<!--          <img src="{% static 'images/no-image.png' %}" alt="No image">-->
+<!--        {% endif %}-->
+
+<!--        <div class="product-hover">-->
+<!--          <button><i class="fa-solid fa-cart-shopping"></i></button>-->
+<!--          <a href="{% url 'add_to_wishlist' product.id %}">-->
+<!--              <button>-->
+<!--                <i class="fa-regular fa-heart"></i>-->
+<!--              </button>-->
+<!--          </a>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <h4>{{ product.name }}</h4>-->
+
+<!--    </a>-->
+
     <a href="{% url 'productdetail' product.id %}" class="product-link">
 
-      <div class="product-image">
-        {% if product.image %}
-          <img src="{{ product.image.url }}" alt="{{ product.name }}">
-        {% else %}
-          <img src="{% static 'images/no-image.png' %}" alt="No image">
-        {% endif %}
+  <div class="product-image">
+    {% if product.image %}
+      <img src="{{ product.image.url }}" alt="{{ product.name }}">
+    {% else %}
+      <img src="{% static 'images/no-image.png' %}">
+    {% endif %}
+  </div>
 
-        <div class="product-hover">
-          <button><i class="fa-solid fa-cart-shopping"></i></button>
-          <a href="{% url 'add_to_wishlist' product.id %}">
-              <button>
-                <i class="fa-regular fa-heart"></i>
-              </button>
-          </a>
-        </div>
-      </div>
+  <div class="product-info">
+    <h4>{{ product.name }}</h4>
 
-      <h4>{{ product.name }}</h4>
+    <div class="product-hover">
+  <button class="cart-btn">
+    <i class="fa-solid fa-cart-shopping"></i>
+  </button>
 
-    </a>
+  <a href="{% url 'add_to_wishlist' product.id %}" class="wishlist-btn">
+    <i class="fa-regular fa-heart"></i>
+  </a>
+</div>
+
+  </div>
+
+</a>
+
+
+
+
+
+
+
+
   </div>
   {% endfor %}
 
@@ -282,6 +342,8 @@ class="page">
 <script src="{% static 'js/products.js'%}">
 </script>
 <script src="{% static 'js/main.js' %}"></script>
+
+
 
 </body>
 </html>
